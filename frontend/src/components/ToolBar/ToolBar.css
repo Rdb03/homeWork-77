@@ -1,0 +1,10 @@
+.toolBar {
+    background-color: #207520;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.toolBar-title {
+    color: #eaea03;
+}
