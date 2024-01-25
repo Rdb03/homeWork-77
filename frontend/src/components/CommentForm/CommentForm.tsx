@@ -1,19 +1,20 @@
-import {Button, Grid, TextField} from "@mui/material";
+import {Button, CircularProgress, Grid, TextField} from "@mui/material";
 import FileInput from "../FileInput/FileInput.tsx";
 import React, {useState} from "react";
 import {CommentMutation} from "../../type";
-import {useAppDispatch} from "../../app/hook.ts";
+import {useAppDispatch, useAppSelector} from "../../app/hook.ts";
 import {createComments, fetchComments} from "../../app/commentThunk.ts";
+import {selectCreateCommentLoading} from "../../app/commentSlice.ts";
 
 const CommentForm = () => {
 
     const [comment, setComment] = useState<CommentMutation>({
-        author: '',
+        author: 'Anonymous',
         comment: '',
         image: null,
     });
     const dispatch = useAppDispatch();
-    // const createLoading = useAppSelector(selectCreateCommentLoading);
+    const sendLoading = useAppSelector(selectCreateCommentLoading);
 
     const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {name, value} = e.target;
@@ -37,11 +38,10 @@ const CommentForm = () => {
       e.preventDefault();
       dispatch(createComments(comment));
       dispatch(fetchComments());
-      console.log(comment);
     };
 
     return (
-        <form onSubmit={onSubmitHandler}>
+        <form style={{display: "flex", flexDirection: "column"}} onSubmit={onSubmitHandler}>
             <Grid container direction="column" spacing={2}>
                 <Grid item xs>
                     <TextField
@@ -70,7 +70,16 @@ const CommentForm = () => {
                     />
                 </Grid>
             </Grid>
-            <Button variant="contained" type="submit">Send</Button>
+            <Button
+                sx={{
+                    margin: "50px auto 0",
+                    width: "200px"
+                }}
+                variant="contained"
+                type="submit"
+            >
+                {!sendLoading ? 'Send' : <CircularProgress/>}
+            </Button>
         </form>
     );
 };

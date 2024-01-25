@@ -1,10 +1,18 @@
-import './ToolBar.css';
+import {Grid} from "@mui/material";
 
 const ToolBar = () => {
     return (
-        <div className="toolBar">
-            <h1 className="toolBar-title">Guest Book</h1>
-        </div>
+        <Grid sx={{
+            textAlign: 'center',
+            backgroundColor: '#0066CC',
+            height: '100px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            lineHeight: '10px'
+        }}>
+            <h1 style={{color: 'white'}} className="toolBar-title">Guest Book</h1>
+        </Grid>
     );
 };
 

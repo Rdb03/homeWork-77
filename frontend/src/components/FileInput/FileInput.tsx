@@ -1,5 +1,5 @@
 import {Button, Grid, TextField} from "@mui/material";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 interface Props {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,29 +29,40 @@ const FileInput: React.FC<Props> = ({onChange, name, label}) => {
     };
 
     return (
-       <>
-           <input
-               type="file"
-               style={{display: "none"}}
-               ref={inputRef}
-               onChange={onFileChange}
-               name={name}
-           />
-           <Grid container direction="row" spacing={2} alignItems="center">
-               <Grid item xs>
-                   <TextField
-                       disabled
-                       label={label}
-                       value={fileName}
-                   />
-               </Grid>
-               <Grid item xs>
-                       <Button variant="contained" onClick={activeInput}>
-                       Browse
-                   </Button>
-               </Grid>
-           </Grid>
-       </>
+        <>
+            <input
+                type="file"
+                style={{ display: "none" }}
+                ref={inputRef}
+                onChange={onFileChange}
+                name={name}
+            />
+            <Grid
+                container
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                sx={{
+                    textAlign: "center",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                }}
+            >
+                <Grid item xs style={{display: 'flex'}}>
+                    <TextField
+                        disabled
+                        label={label}
+                        value={fileName}
+                    />
+                </Grid>
+                <Grid item>
+                    <Button sx={{ marginLeft: "50px"}} variant="contained" onClick={activeInput}>
+                        BROWSE
+                    </Button>
+                </Grid>
+            </Grid>
+        </>
     );
 };
 

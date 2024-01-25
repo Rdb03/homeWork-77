@@ -31,13 +31,13 @@ export const commentsSlice = createSlice({
             state.fetchLoading = false;
         });
         builder.addCase(createComments.pending, (state) => {
-            state.fetchLoading = true;
+            state.createComment = true;
         });
         builder.addCase(createComments.fulfilled, (state) => {
-            state.fetchLoading = false;
+            state.createComment = false;
         });
         builder.addCase(createComments.rejected, (state) => {
-            state.fetchLoading = false;
+            state.createComment = false;
         });
     }
 });

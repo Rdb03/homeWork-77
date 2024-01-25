@@ -1,10 +1,9 @@
 export interface IComments {
     id: string;
     author: string;
-    comment: string,
+    comment: string;
+    image: string | null;
 }
-
-export type ApiComment = Omit<IComments, 'id'>;
 
 export interface CommentMutation {
     author: string;
