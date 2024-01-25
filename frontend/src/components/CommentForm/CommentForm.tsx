@@ -38,6 +38,11 @@ const CommentForm = () => {
       e.preventDefault();
       dispatch(createComments(comment));
       dispatch(fetchComments());
+      setComment({
+          author: 'Anonymous',
+          comment: '',
+          image: null,
+      });
     };
 
     return (
@@ -49,6 +54,7 @@ const CommentForm = () => {
                     label="Author"
                     name="author"
                     type="text"
+                    value={comment.author}
                     onChange={inputChangeHandler}
                     />
                 </Grid>
@@ -58,6 +64,7 @@ const CommentForm = () => {
                         label="Text..."
                         name="comment"
                         type="text"
+                        value={comment.comment}
                         onChange={inputChangeHandler}
                         required
                     />
